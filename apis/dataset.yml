@@ -1,0 +1,75 @@
+openapi: "3.0.3"
+info:
+  description: "API spec to get dataset"
+  version: "1.0.0"
+  title: "Hubspot API"
+servers:
+  - url: https://candidate.hubteam.com
+    description: "prod"
+
+tags:
+  - name: hubspot
+paths:
+  '/candidateTest/v3/problem/dataset':
+    get:
+      summary: Get Data from hubspot
+      tags:
+        - hubspot
+      parameters:
+        - name: userKey
+          in: query
+          required: true
+          description: key
+          schema:
+            type: string
+      operationId: getHubspotEventData
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HubspotClientApiResponse'
+#  '/candidateTest/v3/problem/result':
+#    post:
+#      summary: Post Data from hubspot
+#      tags:
+#        - hubspot
+#      parameters:
+#        - name: userKey
+#          in: query
+#          required: true
+#          description: key
+#          schema:
+#            type: string
+#      requestBody:
+#        required: true
+#        content:
+#          application/json:
+#            schema:
+#              $ref: '#/components/schemas/SessionsByUser'
+#      operationId: postDataToHubspot
+#      responses:
+#        "200":
+#          description: OK
+components:
+  schemas:
+    HubspotClientApiResponse:
+      type: object
+      properties:
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/Events'
+    Events:
+      type: object
+      properties:
+        url:
+          type: string
+        visitorId:
+          type: string
+        timestamp:
+          type: integer
+          format: int64
+        order:
+          type: integer

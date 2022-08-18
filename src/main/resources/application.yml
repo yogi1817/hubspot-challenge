@@ -1,0 +1,13 @@
+server:
+  port: 8080
+
+com:
+  hubspot:
+    host: https://candidate.hubteam.com
+    postHost: https://candidate.hubteam.com/candidateTest/v3/problem/result?userKey=920e0a70dda0b70056bcad70c401
+
+logging:
+  level:
+    org:
+      apache:
+        http: DEBUG
